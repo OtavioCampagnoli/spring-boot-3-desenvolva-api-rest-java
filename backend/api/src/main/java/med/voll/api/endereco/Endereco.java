@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.medico.DadosCadastroMedico;
+import med.voll.api.paciente.DadosCadastroPaciente;
 
 @Embeddable
 @Getter
@@ -27,6 +28,16 @@ public class Endereco {
 	private String uf;
 
 	public Endereco(DadosCadastroMedico dados) {
+		this.logradouro = dados.endereco().logradouro();
+		this.bairro = dados.endereco().bairro();
+		this.cep = dados.endereco().cep();
+		this.numero = dados.endereco().numero();
+		this.complemento = dados.endereco().complemento();
+		this.cidade = dados.endereco().cidade();
+		this.uf = dados.endereco().uf();
+	}
+	
+	public Endereco(DadosCadastroPaciente dados) {
 		this.logradouro = dados.endereco().logradouro();
 		this.bairro = dados.endereco().bairro();
 		this.cep = dados.endereco().cep();
