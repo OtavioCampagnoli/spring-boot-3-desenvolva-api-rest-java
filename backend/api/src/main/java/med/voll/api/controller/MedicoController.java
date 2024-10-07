@@ -1,5 +1,6 @@
 package med.voll.api.controller;
 
+import med.voll.api.medico.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,10 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.voll.api.medico.DadosCadastroMedico;
-import med.voll.api.medico.DadosDaListagemMedico;
-import med.voll.api.medico.Medico;
-import med.voll.api.medico.MedicoRepository;
 
 @RestController
 @RequestMapping(path = "medicos")
@@ -40,8 +37,8 @@ public class MedicoController {
 
 	@PutMapping
 	@Transactional
-	public void atualizar(@RequestBody @Valid DadosCadastroMedico dados) {
-		
+	public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+		var medico = repository.getReferenceById(dados.id());
+		medico.atualizarInformacoes(dados);
 	}
-
 }
